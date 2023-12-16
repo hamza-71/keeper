@@ -1,38 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Note from "./components/Note";
-import CreateArea from "./components/CreateArea";
-import axios from "axios";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Auth from "./components/auth/auth";
+import Home from "./Home";
 function App() {
-  const [noteList, setNoteList] = useState([]);
-  const [currentID,setCurrentID]=useState(null);
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/")
-      .then((res) => {
-        setNoteList(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
   return (
-    <div>
-      <Header />
-      <CreateArea setNoteList={setNoteList} currentID={currentID} />
-      {noteList.map((note) => {
-        return (
-          <Note
-            key={note._id}
-            ID={note._id}
-            title={note.Title}
-            content={note.Content}
-            setNoteList={setNoteList}
-            setCurrentID={setCurrentID}
-          />
-        );
-      })}
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Auth" element={<Auth />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

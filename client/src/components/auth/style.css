@@ -1,0 +1,25 @@
+.userContainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .userForm button {
+    padding: 10px 50px;
+    background-color: blue;
+    color: beige;
+    width: 50%;
+  }
+  .userForm {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    height: 50%;
+    align-items: center;
+  }
+  .userForm input {
+    margin: 20px;
+    width: 70%;
+  }

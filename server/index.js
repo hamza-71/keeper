@@ -24,7 +24,7 @@ app.options("*", cors());
 app.use("/",noteRouter)
 app.use("/auth",authRouter)
 /*-----------------databaseConnection-------------------------*/
-const PORT = 9000;
+const PORT = process.env.PORT;
 mongoose.set("strictQuery", false);
 mongoose
   .connect(process.env.MONGOURL)

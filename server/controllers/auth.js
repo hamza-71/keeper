@@ -17,7 +17,7 @@ export const SignIn = async (req, res) => {
   try {
     const existingUser = await User.findOne({ username });
     if (!existingUser) {
-      return res.status(404).json("User was not found");
+      return res.status(404).json({message:"User was not found"});
     }
     const isPasswordCorrect = await bcrypt.compare(
       password,

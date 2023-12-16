@@ -1,7 +1,11 @@
 import Note from "../models/note.js";
 
 export const createNote = async (req, res) => {
-  const newNote = new Note(req.body);
+
+  const newNote = new Note({
+    ...req.body,
+    creator: req.user.id
+  });
   try {
     const addedNote = await newNote.save();
     res.status(201).json(addedNote);
@@ -29,9 +33,11 @@ export const fetchNote = async (req, res) => {
 export const putNote = async (req, res) => {
   try {
     const updateNote = await Note.findByIdAndUpdate(
-      req.params.id,
-      { $set: req.body },
-      { new: true }
+      req.params.id, {
+        $set: req.body
+      }, {
+        new: true
+      }
     );
     res.status(200).json(updateNote);
   } catch (err) {

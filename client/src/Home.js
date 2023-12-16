@@ -6,7 +6,7 @@ import CreateArea from "./components/CreateArea";
 import axios from "axios";
 function Home() {
   const [noteList, setNoteList] = useState([]);
-  const [currentID,setCurrentID]=useState(null);
+  const [currentID, setCurrentID] = useState(null);
   useEffect(() => {
     axios
       .get("http://localhost:8000/")
@@ -22,12 +22,14 @@ function Home() {
       {noteList.map((note) => {
         return (
           <Note
+            name={note.name}
             key={note._id}
             ID={note._id}
             title={note.Title}
             content={note.Content}
             setNoteList={setNoteList}
             setCurrentID={setCurrentID}
+            creator={note.creator}
           />
         );
       })}

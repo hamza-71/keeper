@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 function Auth() {
   const Navigate = useNavigate();
   const [user, setUser] = useState({
@@ -29,6 +30,11 @@ function Auth() {
         .post("http://localhost:8000/auth/register", user)
         .then((res) => {
           console.log(res.data);
+          Swal.fire({
+            title: "Good job!",
+            text: "You have been registered",
+            icon: "success"
+          });
           setIsSignUP(false);
         })
         .catch((err) => {
@@ -39,10 +45,17 @@ function Auth() {
         .post("http://localhost:8000/auth/login", user)
         .then((res) => {
           console.log(res.data)
+          Swal.fire({
+            title: "Good job!",
+            text: "logged In",
+            icon: "success"
+          });
+          localStorage.setItem("user",JSON.stringify(res.data));
           Navigate("/");
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data.message);
+          Swal.fire(err.response.data.message,"please try again","error")
         });
     }
   };

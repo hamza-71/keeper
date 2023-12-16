@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
 const NoteSchema = new mongoose.Schema({
+  creator:String,
+  name:String,
   Title: String,
   Content: String,
 });

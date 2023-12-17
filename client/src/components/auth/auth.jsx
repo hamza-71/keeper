@@ -44,7 +44,7 @@ function Auth() {
       axios
         .post("http://localhost:8000/auth/login", user)
         .then((res) => {
-          console.log(res.data)
+          //console.log(res.data)
           Swal.fire({
             title: "Good job!",
             text: "logged In",
@@ -54,7 +54,7 @@ function Auth() {
           Navigate("/");
         })
         .catch((err) => {
-          console.log(err.response.data.message);
+          console.log(err.response?.data.message);
           Swal.fire(err.response.data.message,"please try again","error")
         });
     }
